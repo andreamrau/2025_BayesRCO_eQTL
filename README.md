@@ -1,16 +1,10 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 This repo contains the source code for reproducing the
-[analysis](https://github.com/andreamrau/2025_BayesRCO_eQTL/analysis)
-and [figures](https://github.com/andreamrau/2025_BayesRCO_eQTL/figures)
+[analysis](https://github.com/andreamrau/2025_BayesRCO_eQTL/tree/main/analysis)
+and [figures](https://github.com/andreamrau/2025_BayesRCO_eQTL/tree/main/analysis)
 in Mollandin et al. (2025). Full results of the GSEA analysis of PigQTLdb
 enrichment among mapped eQTLs are also provided.
 
-### Citation
+## Citation
 
 If you use these results in your own research, please cite our work:
 
@@ -26,7 +20,7 @@ of BayesRCO in your own research, please cite the associated article:
     genomic prediction models of complex traits. BMC Bioinformatics,
     23(365). <https://doi.org/10.1186/s12859-022-04914-5>
 
-### Funding
+## Funding
 
 ![](gene-switch-logo.jpg)
 
