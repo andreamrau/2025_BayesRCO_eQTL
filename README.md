@@ -1,6 +1,6 @@
 This repo contains the source code for reproducing the
 [analysis](https://github.com/andreamrau/2025_BayesRCO_eQTL/tree/main/analysis)
-and [figures](https://github.com/andreamrau/2025_BayesRCO_eQTL/tree/main/analysis)
+and [figures](https://github.com/andreamrau/2025_BayesRCO_eQTL/tree/main/figures)
 in Mollandin et al. (2025). Full results of the GSEA analysis of PigQTLdb
 enrichment among mapped eQTLs are also provided.
 
