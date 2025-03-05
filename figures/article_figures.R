@@ -226,6 +226,7 @@ fig1top <-
 fig1mid <- plot_grid(fig1c, labels=("C"))
 fig1bot <-
     plot_grid(fig1d, fig1e, rel_widths=c(1,1), labels=c("D","E"))
+## 9 x 7.5 in
 fig2 <- plot_grid(fig1top, fig1mid, fig1bot,
                   rel_heights = c(1,2,1), ncol=1)
 
@@ -866,6 +867,7 @@ fig5top <-
 fig5bot <-
     plot_grid(fig5c, fig5d, rel_widths=c(1,1),
               labels=c("C","D"), ncol=2)
+# 880 x 729
 fig5 <- plot_grid(fig5top, fig5bot, ncol=1, rel_heights=c(1,1))
 
 
