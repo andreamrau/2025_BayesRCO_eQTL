@@ -49,3 +49,6 @@ po/*~
 rsconnect/
 
 *.Rproj
+
+# raw data
+figures/data/

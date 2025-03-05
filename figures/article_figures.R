@@ -1076,27 +1076,40 @@ levels(datfilter$stage) <- gsub("_", " ", levels(datfilter$stage))
 fig6a0 <- ggplot(datfilter %>% filter(stage != gene_choice)) +
     annotate("rect", fill="grey90",  xmin=start, xmax=end,
              ymin = -Inf,ymax=Inf) +
-    geom_point(data=QTLdb_choice %>% mutate(mean_pos=(start+end)/2),
-               aes(x=mean_pos, y=factor(cat_trait))) +
+    geom_point(data=QTLdb_choice %>% mutate(mean_pos=(start+end)/2) %>%
+                 mutate(highlight = factor(ifelse(mean_pos == pos_choice, 2, 1))),
+               aes(x=mean_pos, y=factor(cat_trait), shape=highlight, size=highlight)) +
     geom_vline(aes(xintercept=pos_choice), linetype=2) +
+    geom_vline(aes(xintercept=51256286), linetype=2) +
     ylab("") +
     scale_color_viridis(discrete=TRUE,direction = -1) +
     xlim(c(min(datfilter$pos), max(datfilter$pos))) +
-    guides(color = "none") +
+    guides(color = "none", shape = "none", size = "none") +
+    scale_shape_manual(values = c(1,18)) +
+  scale_size_manual(values = c(1.5,4)) +
     theme_bw() +
     theme(axis.title.x=element_blank(),
           axis.text.x=element_blank(),
           axis.ticks.x=element_blank())
-fig6a1 <- ggplot(datfilter %>% filter(stage != gene_choice)) +
+fig6a1 <- ggplot(datfilter %>% filter(stage != gene_choice) %>% 
+                   mutate(highlight = factor(ifelse(pos %in% c(pos_choice, 51256286), 1, 2))) %>%
+                   mutate(highlight2 = factor(ifelse(pos %in% c(pos_choice, 51256286), 1.25, 1)))) +
     annotate("rect", fill="grey90",  xmin=start, xmax=end,
              ymin = -Inf,ymax=Inf) +
-    geom_point(aes(y=stage, x=pos)) +
+    geom_point(aes(y=stage, x=pos, shape=highlight,), alpha = 0.3) +
+    geom_point(data = datfilter %>% filter(stage != gene_choice) %>% 
+                 mutate(highlight = factor(ifelse(pos %in% c(pos_choice, 51256286), 1, 2))) %>%
+                 mutate(highlight2 = factor(ifelse(pos %in% c(pos_choice, 51256286), 1.5, 1))) %>%
+                 filter(pos %in% c(pos_choice, 51256286)),
+               aes(y=stage, x=pos), size= 4, shape=18) +
     geom_vline(aes(xintercept=pos_choice), linetype=2) +
+    geom_vline(aes(xintercept=51256286), linetype=2) +
     ylab("") +
     xlab(paste0("Position on chromosome ", substr(chr_choice, 4,5))) +
     scale_color_viridis(discrete=TRUE,direction = -1) +
     xlim(c(min(datfilter$pos), max(datfilter$pos))) +
-    guides(color = "none") +
+    guides(color = "none", shape="none", size="none") +
+    scale_shape_manual(values = c(16,1)) +
     theme_bw()
 fig6a2 <- ggplot(Vbeta %>% filter(pos > (start-window), pos < (end+window))) +
     annotate("rect", fill="grey90",  xmin=start, xmax=end,
@@ -1112,6 +1125,7 @@ fig6a2 <- ggplot(Vbeta %>% filter(pos > (start-window), pos < (end+window))) +
     # scale_x_discrete(labels=levels(datfilter$stage)) +
     guides(color="none") +
     geom_vline(aes(xintercept=pos_choice), linetype=2) +
+    geom_vline(aes(xintercept=51256286), linetype=2) +
     xlim(c(min(datfilter$pos), max(datfilter$pos))) +
     theme_bw() +
     theme(strip.background = element_blank(), axis.title.x=element_blank(),
